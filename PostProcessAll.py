@@ -1057,7 +1057,12 @@ def PostProcessSetup(fname, setup, setupFolder, docSettings):
                 toolCur = match["T"]
                 if (toolCur != None):
                     toolCur = int(toolCur)
-                    if not fFirst:
+                    if fFirst:
+                        fBody = True
+                        line = fileOp.readline()
+                        toolLast = toolCur
+                        continue # don't output tool line
+                    else:
                         # Is this a tool change?
                         if toolCur != toolLast:
                             if len(toolChange) != 0:
